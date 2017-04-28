@@ -1,0 +1,34 @@
+<h1> Candidate</h1>
+<%= link_to "add candidate", new_candidate_path(@candidate) ,class: "btn btn-primary"%>
+<table class= "table table-hover ">
+
+  <thead>
+  <tr>
+    <td></td>
+    <td>Name</td>
+    <td>Votes</td>
+    <td>Age</td>
+    <td>Politics</td>
+    <td>Deal</td>
+    </tr>
+  </thead>
+  
+ 
+<tbody>
+  <% @candidates.each do |candidate| %>
+   <tr>
+     <td><%=link_to "Vote!",vote_candidate_path(candidate),class: "btn btn-xs btn-danger",data: {confirm: "Vote this one?!"},method: "post" %></td>
+     <td><%= link_to candidate.display_name %></td>
+     <td><%= candidate.logs.size %></td>
+     <td><%= candidate.age %></td>
+     <td><%= candidate.politics %></td>
+     <td>
+       <%= link_to "edit",edit_candidate_path(candidate) ,class: "btn btn-success btn-xs"%>
+       <%= link_to "delete",candidate,method: "delete" ,data: {confirm:'delete!?'}, class: "btn btn-danger btn-xs" %>
+     </td>
+  </tr>
+</tbody>
+ 
+<%end%> 
+
+ </table>
